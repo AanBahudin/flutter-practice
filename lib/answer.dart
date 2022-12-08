@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import './main.dart';
 
-class AnswersButton extends StatelessWidget {
-  final Function questionHandler;
-  final int questionIndex;
+class Answer extends StatelessWidget {
+  final Function selectHandler;
+  final String answerText;
+  final int eachQuestionScore;
 
-  AnswersButton(this.questionHandler, this.questionIndex);
+  Answer(this.selectHandler, this.answerText, this.eachQuestionScore);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      child: (ElevatedButton(
+      child: ElevatedButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Colors.blue),
         ),
-        child: Text(
-          'Question ' + (1 + this.questionIndex).toString(),
-          style: TextStyle(color: Colors.white),
-        ),
-        onPressed: () => questionHandler(questionIndex),
-      )),
+        child: Text(answerText),
+        onPressed: (() => selectHandler(this.eachQuestionScore)),
+      ),
     );
   }
 }
